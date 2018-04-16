@@ -70,3 +70,17 @@ class IrisModel(object):
 
         return result
 
+
+    def evalution(self, test_data):
+        positives = 0
+        for item in test_data:
+            pred = self.predict(item)
+            high_score = 0
+            pred_type = ''
+            for score, type in pred:
+                if score > high_score:
+                    pred_type = type
+                    high_score = score
+            positives += 1 if pred_type == item[-1] else 0
+            
+        print("accuracy is " + str(positives/len(test_data)))
