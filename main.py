@@ -8,7 +8,7 @@ from model import IrisModel
 #print("!!!!!!"+dir_path)
 
 # load data
-data = CsvReader.create_from_csv("/Users/rklis/Projects/PSD_training/projectSprint/iris.csv",sep=";")
+data = CsvReader.create_from_csv("iris.csv",sep=";")
 
 # data preparation
 test_data, to_learn = train_split_data(data, 'iris_type', 0.3)
