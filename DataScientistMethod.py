@@ -17,20 +17,33 @@ def train_split_data(dataframe, column, test_size):
     for key in types_of_data:
         data_divided_by_give_column[key] = dataframe.get_values_equal_to(column, key)
 
+    
+    
     number_of_sumples = {}
     for key in data_divided_by_give_column:
         number_of_sumples[key] = __get_number_of_samples(test_size, len(data_divided_by_give_column[key]))
     to_learn_dataframe = {}
+    
     for key in data_divided_by_give_column:
         to_learn_dataframe[key] = copy(data_divided_by_give_column[key])
-
+    
+    
     test_datafram = DataFrame()
+    #train_datafram = DataFrame()
+    
+    # sampling by class
     for key in to_learn_dataframe:
+        print(key) # class
         for i in range(number_of_sumples[key]):
-            index_to_test = random.randrange(0, len(to_learn_dataframe[key]))
+            index_to_test = random.randrange(0, len(to_learn_dataframe[key]))               
             temp = to_learn_dataframe[key].pop_on_poss(index_to_test)
             test_datafram.data.append(temp)
+            
+    
+            
     test_datafram.labels = dataframe.labels
+    
+    #train_datafram.labels = dataframe.labels
 
     return test_datafram, to_learn_dataframe
 
