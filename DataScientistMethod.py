@@ -2,7 +2,8 @@ from copy import copy
 from DataFrame import DataFrame
 import random
 
-def __get_number_of_samples(test_size, number_of_items):
+
+def get_number_of_samples(test_size, number_of_items):
     if isinstance(test_size, float):
         if 0 <= test_size <= 1:
             return int(test_size * number_of_items)
@@ -19,7 +20,7 @@ def train_split_data(dataframe, column, test_size):
 
     number_of_sumples = {}
     for key in data_divided_by_give_column:
-        number_of_sumples[key] = __get_number_of_samples(test_size, len(data_divided_by_give_column[key]))
+        number_of_sumples[key] = get_number_of_samples(test_size, len(data_divided_by_give_column[key]))
     to_learn_dataframe = {}
     for key in data_divided_by_give_column:
         to_learn_dataframe[key] = copy(data_divided_by_give_column[key])
