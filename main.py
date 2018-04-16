@@ -10,6 +10,8 @@ from model import IrisModel
 # load data
 data = CsvReader.create_from_csv("iris.csv",sep=";")
 
+
+
 # data preparation
 test_data, to_learn = train_split_data(data, 'iris_type', 0.3)
 

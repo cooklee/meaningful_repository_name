@@ -10,9 +10,13 @@ class DataFrame(object):
     def __init__(self, labels=[], data=[], reindex=True):
         self.set_data(data)
         self.labels = labels
+        
         if reindex:
             self.reindex()
+        
         self.convert_data_to_type(float)
+        
+        
 
     def set_data(self, data):
         self.data = []
