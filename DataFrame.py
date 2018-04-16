@@ -31,10 +31,11 @@ class DataFrame(object):
     def convert_data_to_type(self, give_type):
         for line in self.data:
             for index, item in enumerate(line):
-                try:
-                    line[index] = give_type(item)
-                except Exception as e:
-                    print (e)
+                if index < len(line) - 1:
+                    try:
+                        line[index] = give_type(item)
+                    except Exception as e:
+                        print (e)
 
     def __iter__(self):
         for item in self.data:
