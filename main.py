@@ -1,10 +1,16 @@
+#!/usr/bin/python
+
 from csv_reader import CsvReader
 from DataScientistMethod import train_split_data
 from model import IrisModel
 import sys
+# store input arguments
+args = sys.argv
 
-print 'Number of arguments:', len(sys.argv), 'arguments.'
-print 'Argument List:', str(sys.argv)
+print 'Number of arguments:', len(args), 'arguments.'
+print 'Argument List:', str(args)
+
+
 
 
 #import os
@@ -22,6 +28,7 @@ test_data, to_learn = train_split_data(data, 'iris_type', 0.3)
 irisModel = IrisModel(test_data, to_learn, data.get_types_of_data('iris_type'))
 
 irisModel.learn()
+
 
 """
 for item in test_data:
