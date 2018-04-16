@@ -1,9 +1,11 @@
 from copy import copy, deepcopy
 
+
 class DataRaw(list):
     def __init__(self, *args, **kwargs):
         super(DataRaw, self).__init__(*args, **kwargs)
         self.index = -1
+
 
 class DataFrame(object):
 
@@ -81,7 +83,8 @@ class DataFrame(object):
         return DataFrame(labels=self.labels, data=[self.data[index]], reindex=False)
 
     def __get_row_by_slice(self, slice_obj):
-        return DataFrame(labels=self.labels, data=self.data[slice_obj.start:slice_obj.stop:slice_obj.step], reindex=False)
+        return DataFrame(labels=self.labels, data=self.data[slice_obj.start:slice_obj.stop:slice_obj.step],
+                         reindex=False)
 
     def get_number_of_column(self, column_name):
         if type(column_name) is int:
@@ -100,6 +103,7 @@ class DataFrame(object):
             else:
                 types[item[column_number]] = counter
                 counter += 1
+        print(types)
         return types
 
     def swap_values(self, column, values_to_swap):
@@ -122,9 +126,9 @@ class DataFrame(object):
         return return_list
 
     def __str__(self):
-        ret_str = str(self.labels)+"\n"
+        ret_str = str(self.labels) + "\n"
         for item in self.data:
-            ret_str += str(item)+"\n"
+            ret_str += str(item) + "\n"
         return ret_str
 
     def __len__(self):
@@ -138,7 +142,6 @@ class DataFrame(object):
         dataframe.data = new_list
         dataframe.labels = copy(self.labels)
         return dataframe
-
 
     def __check_if_labels_are_the_same(self, dataframe):
         if len(dataframe.labels) != len(self.labels):

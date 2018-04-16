@@ -1,19 +1,21 @@
 import math
+
+
 class ModelInfo(object):
 
-    def __init__(self,name):
+    def __init__(self, name):
         self.name = name
         self.mean = None
         self.variance = None
 
-    def get_lower_boundry(self, amount = 1):
+    def get_lower_boundry(self, amount=1):
         return self.mean - amount * math.sqrt(self.variance)
 
-    def get_upper_boundry(self, amount = 1):
-        return self.mean +  amount * math.sqrt(self.variance)
+    def get_upper_boundry(self, amount=1):
+        return self.mean + amount * math.sqrt(self.variance)
 
     def calculate_mean(self, data):
-        self.mean = sum(data)/len(data)
+        self.mean = sum(data) / len(data)
 
     def calculate_variance(self, data):
         if self.mean is None:
@@ -21,20 +23,18 @@ class ModelInfo(object):
 
         sum_of_pow = 0
         for item in data:
-            sum_of_pow += (self.mean-item) ** 2
+            sum_of_pow += (self.mean - item) ** 2
 
-        self.variance = sum_of_pow/len(data)
+        self.variance = sum_of_pow / len(data)
+
 
 class IrisModel(object):
-
-
 
     def __init__(self, test_sample, learn_sample, types):
         self.test_sample = test_sample
         self.learn_sample = learn_sample
         self.types = types
         self.modelInfos = {}
-
 
     def learn(self):
         for type in self.types:
@@ -48,7 +48,7 @@ class IrisModel(object):
                 self.modelInfos[type].append(modelInfo)
 
     def check_if_value_is_in_range(self, value, modelInfo):
-        if  modelInfo.get_upper_boundry(1) > value > modelInfo.get_lower_boundry(1):
+        if modelInfo.get_upper_boundry(1) > value > modelInfo.get_lower_boundry(1):
             return 1
         elif modelInfo.get_upper_boundry(2) > value > modelInfo.get_lower_boundry(2):
             return 0.5
@@ -61,12 +61,11 @@ class IrisModel(object):
 
         for index, modelinfo in enumerate(self.modelInfos[iris_type]):
             ret_value += self.check_if_value_is_in_range(value=data_row[index], modelInfo=modelinfo)
-        return ret_value/len(self.modelInfos[iris_type])
+        return ret_value / len(self.modelInfos[iris_type])
 
     def predict(self, data_row):
         result = []
         for iris_type in self.modelInfos:
-            result.append((self.check_all_values_aginst_model_info(data_row, iris_type),iris_type))
+            result.append((self.check_all_values_aginst_model_info(data_row, iris_type), iris_type))
 
         return result
-

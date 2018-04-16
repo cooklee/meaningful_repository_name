@@ -2,8 +2,8 @@ from unittest import TestCase
 from DataFrame import DataRaw
 from copy import copy
 
-class Test_dataRaw(TestCase):
 
+class Test_dataRaw(TestCase):
 
     def setUp(self):
         self.data = DataRaw([x for x in range(20)])

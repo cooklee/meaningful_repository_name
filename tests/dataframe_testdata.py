@@ -1,10 +1,11 @@
 import string
 
-def dataframe_generator(number_of_labels=10, types=['sml','med','big'], number_of_data=150):
+
+def dataframe_generator(number_of_labels=10, types=['sml', 'med', 'big'], number_of_data=150):
     dataframe = [list(string.ascii_lowercase)[:number_of_labels]]
     dataframe[0].append('type')
     for x in range(number_of_data):
-        line = [x % 10] * (len(dataframe[0])-1)
+        line = [x % 10] * (len(dataframe[0]) - 1)
         if x < 50:
             line.append('SML')
         elif x < 100:
@@ -13,6 +14,8 @@ def dataframe_generator(number_of_labels=10, types=['sml','med','big'], number_o
             line.append('BIG')
         dataframe.append(line)
     return dataframe
+
+
 # a = dataframe_generator()
 # print ("test_data = [")
 # for item in a:
@@ -173,8 +176,3 @@ test_data = [
     [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 'BIG'],
     [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 'BIG'],
 ]
-
-
-
-
-
