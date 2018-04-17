@@ -8,8 +8,9 @@ import os
 
 # store input arguments
 args = sys.argv
+n_args = len(args)
 
-#print ('Number of arguments:', len(args), 'arguments.')
+#print ('Number of arguments:', n_args, 'arguments.')
 #print ('Argument List:', str(args))
 
 file_path = args[1]
@@ -18,6 +19,10 @@ sepal_width = args[3]
 petal_length = args[4]
 petal_width = args[5]
 
+
+if(n_args == 7):
+    optinal_file = args[6]
+    print(optinal_file)
 
 
 

@@ -37,8 +37,8 @@ class DataFrame(object):
             for index, item in enumerate(line):
                 try:
                     line[index] = give_type(item)
-                except Exception as e:
-                    print (e)
+                except Exception as e: pass
+                    #print (e)
 
     def __iter__(self):
         for item in self.data:
