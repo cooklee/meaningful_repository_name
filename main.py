@@ -21,5 +21,19 @@ while  (accuracy < threshold ):
 
     accuracy, final_model = irisModel.evalution(test_data)
 
-print('Best Model Found', accuracy )
+
+if __name__ == "__main__":
+
+    flag = sys.argv[1]
+
+    if flag == "-f":
+        input_file = sys.argv[2]
+        print('inp',input_file)
+        input_data = CsvReader.create_from_csv(input_file, sep=";")
+        for item in input_data:
+            print(final_model.predict(item))
+    elif flag=="-a":
+        input_data = [float(x.replace(',','.')) for x in sys.argv[2:]]
+        print(final_model.predict(input_data))
+
 
