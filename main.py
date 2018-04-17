@@ -23,9 +23,10 @@ if (output == 1):
     # new file to load
     file_path = args[2] 
     # load data
+    data = CsvReader.create_from_csv(file_path, sep=";")
     
-    new_data = CsvReader.create_from_csv(file_path, sep=";")
-    data = CsvReader.create_from_csv("iris.csv",sep=";")
+    #new_data = CsvReader.create_from_csv(file_path, sep=";")
+    #data = CsvReader.create_from_csv("iris.csv",sep=";")
     
 else:
     sepal_length = args[1]
@@ -38,12 +39,14 @@ else:
 
 
 # data preparation
+#test_data, to_learn = train_split_data(data, 'iris_type', 0.3)
+test_data, to_learn = train_split_data(data, 'iris_type', 0.9)
+irisModel = IrisModel(test_data, to_learn, data.get_types_of_data('iris_type'))
+
+
+
 #test_data, to_learn = train_split_data(data, 'iris_type', 0.9)
-#irisModel = IrisModel(test_data, to_learn, data.get_types_of_data('iris_type'))
-
-
-test_data, to_learn = train_split_data(data, 'iris_type', 0.90)
-irisModel = IrisModel(new_data, to_learn, data.get_types_of_data('iris_type'))
+#irisModel = IrisModel(new_data, to_learn, data.get_types_of_data('iris_type'))
 
 irisModel.learn()
 
