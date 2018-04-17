@@ -4,16 +4,22 @@ from csv_reader import CsvReader
 from DataScientistMethod import train_split_data
 from model import IrisModel
 import sys
+import os
+
 # store input arguments
 args = sys.argv
 
 print 'Number of arguments:', len(args), 'arguments.'
 print 'Argument List:', str(args)
 
+file_path = args[0]
+sepal_length = args[1]
+sepal_width = args[2]
+petal_length = args[3]
+petal_width = args[4]
 
 
 
-#import os
 #dir_path = os.path.dirname(os.path.realpath(__file__))
 
 #print("!!!!!!"+dir_path)
