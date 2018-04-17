@@ -36,7 +36,8 @@ class DataFrame(object):
                 try:
                     line[index] = give_type(item)
                 except Exception as e:
-                    print (e)
+                    pass
+                    # print (e)
 
     def __iter__(self):
         for item in self.data:
@@ -103,7 +104,6 @@ class DataFrame(object):
             else:
                 types[item[column_number]] = counter
                 counter += 1
-        print(types)
         return types
 
     def swap_values(self, column, values_to_swap):
@@ -167,5 +167,3 @@ class DataFrame(object):
 
 if __name__ == "__main__":
     from csv_reader import CsvReader
-
-

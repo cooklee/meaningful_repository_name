@@ -17,7 +17,6 @@ class TestDataFrame(TestCase):
         for index, item in enumerate(self.data_frame):
             self.assertEqual(index, item.index)
 
-
     def test_createDataFrame_labels(self):
         self.assertEqual(len(self.data_frame.labels), len(test_data[0]))
 
@@ -160,7 +159,7 @@ class TestDataFrame(TestCase):
         self.assertTrue("@MID@" in types)
 
     def test_swap_values_all(self):
-        self.data_frame.swap_values('type', {"SML": "TINY","MID": "@MID@", "BIG":"HUGE"})
+        self.data_frame.swap_values('type', {"SML": "TINY", "MID": "@MID@", "BIG": "HUGE"})
         types = self.data_frame.get_types_of_data('type')
         self.assertTrue("@MID@" in types)
         self.assertTrue("TINY" in types)
@@ -172,26 +171,25 @@ class TestDataFrame(TestCase):
     def test_check_if_correct_values_are_teken(self):
         data = self.data_frame.get_values_equal_to('type', "SML")
         self.assertEqual(len(data.data), 50)
-        data_sliced = data[-1,:]
+        data_sliced = data[-1, :]
         for item in data_sliced.data:
             self.assertEqual(item[0], 'SML')
 
     def test_pop_item_int_index_0(self):
         data_raw = self.data_frame.pop_item(0)
-        expected_values = [0]*10 + ['SML']
+        expected_values = [0] * 10 + ['SML']
         for exp_item, test_item in zip(expected_values, data_raw):
             self.assertEqual(exp_item, test_item)
 
     def test_pop_item_int_index_50(self):
         data_raw = self.data_frame.pop_item(50)
-        expected_values = [0]*10 + ['MID']
+        expected_values = [0] * 10 + ['MID']
         for exp_item, test_item in zip(expected_values, data_raw):
             self.assertEqual(exp_item, test_item)
 
-
     def test_pop_item_int_index_100(self):
         data_raw = self.data_frame.pop_item(100)
-        expected_values = [0]*10 + ['BIG']
+        expected_values = [0] * 10 + ['BIG']
         for exp_item, test_item in zip(expected_values, data_raw):
             self.assertEqual(exp_item, test_item)
 
@@ -227,20 +225,3 @@ class TestDataFrame(TestCase):
     def test_check_pop_by_position(self):
         self.data_frame.pop_on_poss(50)
         self.assertEqual(self.data_frame.data[50].index, 51)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

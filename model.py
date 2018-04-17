@@ -1,5 +1,5 @@
 import math
-
+from operator import truediv
 
 class ModelInfo(object):
 
@@ -69,3 +69,14 @@ class IrisModel(object):
             result.append((self.check_all_values_aginst_model_info(data_row, iris_type), iris_type))
 
         return result
+
+    def evaluate(self):
+        accuracies = []
+        for test_item in self.test_sample:
+            prediction = self.predict(test_item)
+            predicted_type = max(prediction, key=lambda item: item[0])[1]
+            if predicted_type == test_item[-1]:
+                accuracies.append(1)
+            else:
+                accuracies.append(0)
+        print('ACCURACY : {:.2f}'.format(truediv(sum(accuracies),len(accuracies))))
