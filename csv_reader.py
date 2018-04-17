@@ -5,6 +5,7 @@ class CsvReader(object):
 
     @staticmethod
     def create_from_csv(csv_path, sep=";"):
+        #print(csv_path)
         data_read = CsvReader.__read_from_file(csv_path)
         unprocessed_data = CsvReader.__create_data_frame_from_read_data(data_read, sep=sep)
         

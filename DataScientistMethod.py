@@ -33,7 +33,7 @@ def train_split_data(dataframe, column, test_size):
     
     # sampling by class
     for key in to_learn_dataframe:
-        print(key) # class
+        #print(key) # class
         for i in range(number_of_sumples[key]):
             index_to_test = random.randrange(0, len(to_learn_dataframe[key]))               
             temp = to_learn_dataframe[key].pop_on_poss(index_to_test)
