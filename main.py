@@ -19,8 +19,6 @@ petal_length = args[4]
 petal_width = args[5]
 
 
-print("file_path", file_path)
-print ('sepal_length', sepal_length, 'sepal_width', sepal_width, "petal_length", petal_length, "petal_width", petal_width)
 
 
 #dir_path = os.path.dirname(os.path.realpath(file_path))
@@ -43,9 +41,13 @@ item_list = [sepal_length, sepal_width, petal_length, petal_width]
 item = [float(i) for i in item_list]
 a = irisModel.predict(item)
 max_prob = max([x[0] for x in a])
-pred_class = [y[1] for y in a if y[0]==max_prob]
+pred_class = [y[1] for y in a if y[0]==max_prob][0]
 
-print("predicted class:", pred_class)
+print("")
+print("Input file:", file_path)
+print ('Input values: sepal length', sepal_length, 'sepal width', sepal_width, 
+       "petal length", petal_length, "petal width", petal_width)
+print("Output class:", pred_class)
 
     
 """
