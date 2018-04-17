@@ -30,7 +30,7 @@ class DataFrame(object):
 
     def convert_data_to_type(self, give_type):
         for line in self.data:
-            for index, item in enumerate(line):
+            for index, item in enumerate(line[:-1]):
                 try:
                     line[index] = give_type(item)
                 except Exception as e:

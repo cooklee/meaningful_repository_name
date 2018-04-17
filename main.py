@@ -2,23 +2,24 @@ from csv_reader import CsvReader
 from DataScientistMethod import train_split_data
 from model import IrisModel
 
-# import os
-# dir_path = os.path.dirname(os.path.realpath(__file__))
+import os
+import sys
 
-# print("!!!!!!"+dir_path)
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-# load data
-data = CsvReader.create_from_csv("iris.csv", sep=";")
+accuracy = 0
+threshold = 0.98
 
-# data preparation
-test_data, to_learn = train_split_data(data, 'iris_type', 0.3)
+while  (accuracy < threshold ):
 
-irisModel = IrisModel(test_data, to_learn, data.get_types_of_data('iris_type'))
-irisModel.learn()
+    data = CsvReader.create_from_csv("iris.csv", sep=";")
 
-for item in test_data:
-    # print(item)
-    a = irisModel.predict(item)
-    # print(a)
+    test_data, to_learn = train_split_data(data, 'iris_type', 0.3)
 
-print(irisModel.evalution(test_data))
+    irisModel = IrisModel(test_data, to_learn, data.get_types_of_data('iris_type'))
+    irisModel.learn()
+
+    accuracy, final_model = irisModel.evalution(test_data)
+
+print('Best Model Found', accuracy )
+

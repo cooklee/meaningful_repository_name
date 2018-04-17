@@ -87,4 +87,4 @@ class IrisModel(object):
                     pred_type = type
                     high_score = score
             positives += 1 if pred_type == item[-1] else 0
-        print("accuracy is " + str(positives / len(test_data)))
+        return (positives / len(test_data)) , self
