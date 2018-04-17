@@ -12,6 +12,7 @@ def __get_number_of_samples(test_size, number_of_items):
 
 
 def train_split_data(dataframe, column, test_size):
+    random.seed(1)
     types_of_data = dataframe.get_types_of_data(column)
     data_divided_by_give_column = {}
     for key in types_of_data:
