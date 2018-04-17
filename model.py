@@ -1,4 +1,7 @@
 import math
+from sklearn.svm import LinearSVC
+from sklearn.model_selection import train_test_split
+import numpy as np
 class ModelInfo(object):
 
     def __init__(self,name):
@@ -82,6 +85,28 @@ class IrisModel(object):
                     high_score = score
             positives += 1 if pred_type == item[-1] else 0
         print("accuracy is " + str(positives/len(test_data)))
+
+
+class SVMModel(object):
+    def __init__(self, learn_sample, split=0.2):
+        self.data = np.array(learn_sample)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+            self.data[:, 0:-1], self.data[:, -1], test_size=split, random_state = 42)
+
+    def learn(self):
+        self.clf = LinearSVC(random_state=0)
+        self.clf.fit(self.X_train, self.y_train)
+
+    def predict(self, data_row):
+        return self.clf.predict([data_row])[0]
+
+    def evalution(self, test_data):
+        test_data = np.array(test_data)
+        np_test = test_data[:, 0:-1].astype('float64')
+        truth = test_data[:, -1]
+        score = self.clf.score(np_test, truth)
+        print(score)
+
 
 
 
