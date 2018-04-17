@@ -88,7 +88,7 @@ class IrisModel(object):
 
 
 class SVMModel(object):
-    def __init__(self, learn_sample, split=0.2):
+    def __init__(self, learn_sample, split=0.0):
         self.data = np.array(learn_sample)
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.data[:, 0:-1], self.data[:, -1], test_size=split, random_state = 42)

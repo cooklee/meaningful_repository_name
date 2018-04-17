@@ -34,13 +34,13 @@ if args[0] == '--help':
     print("Instruction:")
     print("-A filename: to print test accuracy for [filename]")
     print("-P float float float float: to print type for [float float float float]")
-    print("-S float float float float: to print type with super model for [float float float float]")
+    # print("-S float float float float: to print type with super model for [float float float float]")
 elif args[0] == '-T':
-    print("Evaluation from training data for irisModel:")
-    irisModel.evalution(test_data)
-    print("Evaluation from training data for SVCModel:")
+    # print("Evaluation from training data for irisModel:")
+    # irisModel.evalution(test_data)
+    print("Evaluation from training data:")
     svcModel.evalution(data)
-elif args[0] == '-P':
+elif args[0] == '-S':
     if len(args) != 5:
         print("Wrong arguments")
         exit(-1)
@@ -57,13 +57,23 @@ elif args[0] == '-A':
         print("Wrong arguments")
         exit(-1)
     input_data = CsvReader.create_from_csv(args[1], sep=";")
-    print("Evaluation from input data for old model:")
-    irisModel.evalution(input_data)
-    print("Evaluation from input data for SVC model:")
+    # print("Evaluation from input data for old model:")
+    # irisModel.evalution(input_data)
+    # print("Evaluation from input data:")
     svcModel.evalution(input_data)
-elif args[0] == '-S':
+elif args[0] == '-P':
     if len(args) != 5:
         print("Wrong arguments")
         exit(-1)
+    for arg in args[1:]:
+        try:
+            float(arg)
+        except Exception as e:
+            print(e)
+            print("Not even a flower")
+            exit(-1)
+        if float(arg) <= 0:
+            print("Not even a flower")
+            exit(-1)
     preds = svcModel.predict([float(arg.replace(',', '.')) for arg in args[1:]])
     print(preds)

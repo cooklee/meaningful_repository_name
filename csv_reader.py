@@ -20,7 +20,10 @@ class CsvReader(object):
 
     @staticmethod
     def __create_data_frame_from_read_data(read_lines, sep=";"):
-        divided_data = [line.replace(',', '.').split(sep) for line in read_lines]
+        if read_lines[1][3] == ';':
+            divided_data = [line.replace(',', '.').split(sep) for line in read_lines]
+        else:
+            divided_data = [line.split(',') for line in read_lines]
         return divided_data
 
     @staticmethod
