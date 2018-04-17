@@ -23,7 +23,7 @@ class ModelInfo(object):
         for item in data:
             sum_of_pow += (self.mean-item) ** 2
 
-        self.variance = sum_of_pow/len(data)
+        self.variance = sum_of_pow/len(data - 1)
 
 class IrisModel(object):
 
